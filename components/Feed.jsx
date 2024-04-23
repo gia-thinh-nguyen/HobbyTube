@@ -11,14 +11,14 @@ const Feed = () => {
     
   return (
     <div className='w-full h-full text-center'>
-        <div className='max-w-[1240px] w-full h-full mx-auto flex flex-col justify-center items-center pt-[100px] '>
+        <div className='max-w-[1300px] w-full h-full mx-auto flex flex-col justify-center items-center pt-[100px] '>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {context.videos.map((item,index)=>{
                         return(
-                            <div key={index}>
-                                <Link href={`/video/${item.videoid}`}>
+                            <div key={index} className='hover:scale-110 rounded-lg shadow-xl'>
+                                <Link href={`/video/${item.videoid}/${item.title}`}>
                                     <Image loader={()=>item.thumbnail} src={item.thumbnail} className='rounded-lg' alt='' width='500' height='500'/>
-                                    <p>{item.title}</p>
+                                    <p className='text-balance line-clamp-2 text-lg pt-1'>{item.title}</p>
                                 </Link>             
                             </div>
                         )

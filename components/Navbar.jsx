@@ -13,7 +13,6 @@ const Navbar = () => {
     const context=useContext(Context);
     const toggleSidebar=()=>{
         context.setToogle(!context.toogle);
-        console.log(context.toogle);
     }
   return (
     //create a youtube like navbar
@@ -21,7 +20,7 @@ const Navbar = () => {
         <div className='flex justify-between items-center w-full h-full px-2 2xl:px-16'>
             {/* //the menu icon then the logo then p tag then search bar  */}
             <div className='flex justify-center items-center p-4'>
-                <RiMenuFill size={30} onClick={toggleSidebar} />
+                <RiMenuFill size={40} onClick={toggleSidebar} className='hover:bg-gray-400 hover:rounded-full p-2' />
                 <Link href='/' className='flex justify-center items-center'>
                     <Image src='/assets/logo.jpg' alt='' width={50} height={40} className='rounded-full'/>
                     <span className=' tracking-widest font-bold text-xl mx-2'>HobbyTube</span>

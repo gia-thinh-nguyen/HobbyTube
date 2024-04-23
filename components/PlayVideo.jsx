@@ -4,17 +4,15 @@ import ReactPlayer from 'react-player'
 import { useState,useEffect } from 'react'
 
 
-
-const PlayVideo = ({videoIdProp}) => {
+const PlayVideo = ({videoIdProp,titleProp}) => {
     const [apiData,setApiData]=useState(null);
     const [channelData,setChannelData]=useState(null);
-
+    const cleanedTitle=decodeURIComponent(titleProp);
      const fetchConfig = async () => {
         const res = await fetch("/api/config"); 
         const data = await res.json(); 
         return data    
     }; 
-    
     
     const fetchData=async()=>{
         const config = await fetchConfig(); 
@@ -40,21 +38,21 @@ const PlayVideo = ({videoIdProp}) => {
        }
     },[apiData])
   return (
-    <div className='w-full md:w-[75vw] pt-[80px] md:pt-[100px] md:px-5'>
+    <div className='w-full md:w-[78vw] pt-[80px] md:pt-[100px] md:px-5'>
         <ReactPlayer url={`https://www.youtube.com/watch?v=${videoIdProp}`} controls={true} width='100%' height='80vh'/>
-        <div className='flex gap-8 p-3'>
+        <div className='flex gap-8 p-3 '>
             <div className='hidden md:flex justify-center items-center'>
-                <img src={channelData?channelData.snippet.thumbnails.default.url:''} alt='/' width={50} height={20}></img>
+                <img  src={channelData?channelData.snippet.thumbnails.default.url:''} alt='/' width={50} height={50} className='rounded-full'></img>
             </div>
             <div className='flex-initial w-[700px]'>
-                <h4>{apiData?apiData.snippet.title:'Title here'}</h4>
+                <h4>{cleanedTitle?cleanedTitle:'Title here'}</h4>
                 <p className='hidden md:block'>{apiData?.snippet.channelTitle}</p>
             </div>
             <div className='hidden md:flex justify-center items-center bg-red-600 text-white w-[100px] h-[40px] rounded-lg cursor-pointer'>Subscribe</div>
         </div>
         <div className='flex md:hidden justify-between px-3'>
             <div className='flex justify-center items-center gap-4'>
-                <img src={channelData?channelData.snippet.thumbnails.default.url:''} alt='/' width={50} height={20}></img>
+                <img src={channelData?channelData.snippet.thumbnails.default.url:''} alt='/' width={50} height={50} className='rounded-full'></img>
                 <p>{apiData?.snippet.channelTitle}</p>
             </div>
             

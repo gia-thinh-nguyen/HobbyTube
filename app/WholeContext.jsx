@@ -1,5 +1,5 @@
 'use client'
-import { createContext,use,useEffect,useState } from "react";
+import { createContext,useEffect,useState } from "react";
 
 
 export const Context=createContext();
@@ -7,27 +7,31 @@ export const Context=createContext();
 const WholeContext = (props) => {
   const[toogle,setToogle]=useState(false); 
   const[videos,setVideos]=useState([]);
+  const[category,setCategory]=useState('basketball'); //['basketball','soccer'
 
-  
   const dbFetch = async () => {
-    const res = await fetch("scripts/basketball"); 
+    const res = await fetch(`scripts/${category}`); 
     const data = await res.json();
     return data  
   }
 
   const setVidFetch=async()=>{
     const item=await dbFetch();
-    setVideos(item.videos.rows);
+    const videos=item.videos.rows;
+    const randomVideos=videos.sort(() => 0.5 - Math.random()).slice(0, 28);
+    setVideos(randomVideos);
   }
   useEffect(() => {
     setVidFetch();
-  }, [])
+  }, [category])
 
 
   const value={
     toogle,
     setToogle,
-    videos
+    videos,
+    category,
+    setCategory
   }
 
   return (
