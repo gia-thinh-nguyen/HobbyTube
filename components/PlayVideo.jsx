@@ -2,12 +2,19 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
 import { useState,useEffect } from 'react'
-import {fetchConfig} from '../app/api/config/route.ts'
+
 
 
 const PlayVideo = ({videoIdProp}) => {
     const [apiData,setApiData]=useState(null);
     const [channelData,setChannelData]=useState(null);
+
+     const fetchConfig = async () => {
+        const res = await fetch("/api/config"); 
+        const data = await res.json(); 
+        return data    
+    }; 
+    
     
     const fetchData=async()=>{
         const config = await fetchConfig(); 
