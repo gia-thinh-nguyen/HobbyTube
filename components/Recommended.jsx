@@ -14,10 +14,10 @@ const Recommended = () => {
         {context.videos.map((item,index)=>{
           return(
             <div className='w-full' key={index}>
-              <Link href={`/video/${item.id}`}>
-                <Image loader={()=>item.snippet.thumbnails.medium.url} src={item.snippet.thumbnails.medium.url} className='rounded-lg w-full' alt='' width='500' height='500' />
+              <Link href={`/video/${item.videoid}`}>
+                <Image loader={()=>item.thumbnail} src={item.thumbnail} className='rounded-lg w-full' alt='' width='500' height='500' />
                 <div className='flex items-center justify-center'>
-                    <p>{item.snippet.title}</p>
+                    <p>{item.title}</p>
                     <BsThreeDotsVertical size={20}/>
                 </div>
               </Link>    

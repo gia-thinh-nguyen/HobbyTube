@@ -2,35 +2,31 @@
 import React from 'react'
 import ReactPlayer from 'react-player'
 import { useState,useEffect } from 'react'
-import Image from 'next/image'
+import {fetchConfig} from '../app/api/config/route.ts'
+
+
 const PlayVideo = ({videoIdProp}) => {
     const [apiData,setApiData]=useState(null);
     const [channelData,setChannelData]=useState(null);
-    const [apiKey_2,setApiKey_2]=useState('')
-    const fetchConfig = async () => {
-        const res = await fetch("/api/config"); 
-        const data = await res.json(); 
-        return data    
-    }; 
+    
     const fetchData=async()=>{
         const config = await fetchConfig(); 
         const apiKey = config.myKey 
         const res=await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoIdProp}&key=${apiKey}`);
         const data=await res.json();
-        setApiData(data.items[0]);
-        setApiKey_2(apiKey);
-        
+        setApiData(data.items[0]);  
     }
     const fetchChannelData=async()=>{
-        const resChannel=await fetch(`https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${apiData?.snippet.channelId}&key=${apiKey_2}`);
+        const config = await fetchConfig(); 
+        const apiKey = config.myKey
+        const resChannel=await fetch(`https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${apiData?.snippet.channelId}&key=${apiKey}`);
         const dataChannel=await resChannel.json();
         setChannelData(dataChannel.items[0]);
     }
-    
-    
+
     useEffect(()=>{
         fetchData();
-    })
+    },[])
     useEffect(()=>{
        if(apiData){
         fetchChannelData();

@@ -4,3 +4,9 @@ export async function GET() {
     }); 
     return Response.json(res);   
     }
+
+export const fetchConfig = async () => {
+    const res = await fetch("/api/config"); 
+    const data = await res.json(); 
+    return data    
+}; 
