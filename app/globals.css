@@ -28,6 +28,9 @@ html{
   h5{
     @apply text-lg sm:text-xl md:text-2xl
   }
+  h6{
+    @apply text-base sm:text-lg md:text-xl
+  }
   li{
     @apply cursor-pointer
   }
