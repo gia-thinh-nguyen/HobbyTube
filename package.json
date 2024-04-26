@@ -9,9 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@nextui-org/skeleton": "^2.0.27",
     "@vercel/postgres": "^0.8.0",
     "dotenv": "^16.4.5",
+    "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
     "next": "14.2.1",
     "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2",

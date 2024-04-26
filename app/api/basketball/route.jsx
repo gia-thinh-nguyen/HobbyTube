@@ -5,9 +5,9 @@ import {basketballSeed} from '../../seed/basketballSeed.js';
 
 export async function GET(request) {
   try {
-    await sql`CREATE TABLE IF NOT EXISTS fixedbasketball (videoid TEXT PRIMARY KEY,thumbnail TEXT,title TEXT,channelid TEXT, channeltitle TEXT);`
-    const data=basketballSeed.items;
-    if (!data || data.length === 0) throw new Error('No videos found');
+    // await sql`CREATE TABLE IF NOT EXISTS fixedbasketball (videoid TEXT PRIMARY KEY,thumbnail TEXT,title TEXT,channelid TEXT, channeltitle TEXT);`
+    // const data=basketballSeed.items;
+    // if (!data || data.length === 0) throw new Error('No videos found');
     
     //  for(let item of data){
     //   await sql`INSERT INTO fixedbasketball (videoid, thumbnail,title,channelid,channeltitle) VALUES (${item.id.videoId},${item.snippet.thumbnails.medium.url},${item.snippet.title},${item.snippet.channelId},${item.snippet.channelTitle}) ON CONFLICT (videoid) DO NOTHING;`;

@@ -1,38 +1,23 @@
 'use client'
-import React, { use, useContext,useEffect,useState } from 'react'
+import React, {useContext} from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Context } from '../app/WholeContext'
 
 
 const Feed = () => {   
-    const[videos,setVideos]=useState([]);
-    const{category}=useContext(Context);
-
-    const dbFetch = async () => {
-    const res = await fetch(`/api/${category}`); 
-    const data = await res.json();
-    return data  
-  }
-  const setVidFetch=async()=>{
-    const item=await dbFetch();
-    const videos=item.videos.rows;
-    const randomVideos=videos.sort(() => 0.5 - Math.random()).slice(0, 28);
-    setVideos(randomVideos);
-  }
-  useEffect(() => {
-    setVidFetch();
-  }, [category])
- 
+    
+    const{videos}=useContext(Context);
+    
   return (
     <div className='w-full h-full text-center'>
-        <div className='max-w-[1300px] w-full h-full mx-auto flex flex-col justify-center items-center pt-[150px] '>
+        <div className='max-w-[1300px] w-full h-full mx-auto flex flex-col justify-center items-center pt-[85px] md:pt-[170px] '>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {videos?.length>0?videos.map((item,index)=>{
                         return(
-                            <div key={index} className='hover:scale-110 rounded-lg shadow-xl'>
+                            <div key={index} className='flex flex-col justify-center items-center hover:scale-110 rounded-lg shadow-xl'>
                                 <Link href={`/video/${item.videoid}/${item.title}/${item.channelid}/${item.channeltitle}`}>
-                                    <Image loader={()=>item.thumbnail} src={item.thumbnail} className='rounded-lg' alt='' width='500' height='500' style={{ width: "auto", height: "auto" }} unoptimized={true} priority={true} />
+                                    <div className='flex justify-center items-center'><Image loader={()=>item.thumbnail} src={item.thumbnail} className='rounded-lg' alt='' width='700' height='500'  unoptimized={true} priority={true} /></div>
                                     <p className='text-balance line-clamp-2 text-lg pt-1'>{item.title}</p>
                                 </Link>             
                             </div>
