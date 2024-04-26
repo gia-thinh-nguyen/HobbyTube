@@ -5,7 +5,7 @@ import Recommended from '../../../components/Recommended'
 import VideoDescription from '../../../components/VideoDescription'
 
 
-const page= ({params}) => {
+const Page= ({params}) => {
   //if small screen, make the video description scollable with recommended videos
   const [isMediumScreen, setIsMediumScreen] = useState(false);
   useEffect(() => {
@@ -50,4 +50,4 @@ const page= ({params}) => {
     )
 }
 
-export default page
+export default Page
