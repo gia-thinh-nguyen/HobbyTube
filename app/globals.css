@@ -34,9 +34,7 @@ html{
   li{
     @apply cursor-pointer
   }
-  button{
-    @apply shadow-xl shadow-gray-200 rounded-xl uppercase bg-gradient-to-r from-blue-500 to-blue-700 text-white
-  }
+ 
 }
 
 @layer utilities {

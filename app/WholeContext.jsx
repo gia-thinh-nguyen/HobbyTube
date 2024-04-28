@@ -1,14 +1,24 @@
 'use client'
 import { createContext,useState,useEffect } from "react";
-
+import { useUser } from '@clerk/nextjs'
 
 export const Context=createContext();
 
 const WholeContext = (props) => {
-  const[toogle,setToogle]=useState(false); 
-  const[category,setCategory]=useState('basketball');
+  const[sidebar,setSidebar]=useState(false); 
+  const [category, setCategory] = useState(() => {
+    // Try to get category from local storage
+    const savedCategory = localStorage.getItem('category');
+    return savedCategory ? savedCategory : 'basketball'; // Default to 'basketball' if no saved category
+  });
+  useEffect(() => {
+    localStorage.setItem('category', category);
+  }, [category]);
+  
   const[videos,setVideos]=useState([]);
-
+  const[profile,setProfile]=useState(false);
+  const { user } = useUser();
+  const userEmail=user?.primaryEmailAddress.emailAddress;
   const dbFetch = async () => {
     const res = await fetch(`/api/${category}`); 
     const data = await res.json();
@@ -24,11 +34,14 @@ const WholeContext = (props) => {
     setVidFetch();
   }, [category])
   const value={
-    toogle,
-    setToogle,
+    sidebar,
+    setSidebar,
     category,
     setCategory,
-    videos
+    videos,
+    profile,
+    setProfile,
+    userEmail
   }
 
   return (

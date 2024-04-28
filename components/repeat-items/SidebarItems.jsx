@@ -10,7 +10,7 @@ const SidebarItems = ({cat}) => {
         setCategory(category);
     }
   return (
-    <Link href='/' onClick={()=>twoFunction(cat)} >
+    <Link href='/feed' onClick={()=>twoFunction(cat)} >
         <div className='flex cursor-pointer mb-[20px] gap-4' >
             <Image src={`/assets/hobbies/${cat}.png`} alt={`${cat} Icon`} width={60} height={60} unoptimized={true} priority={true}/>
             <h5 className='flex items-center'>{cat}</h5>    
