@@ -36,6 +36,16 @@ html{
   }
  
 }
+.cl-internal-11ttlho{
+  display: none;
+}
+.cl-avatarBox{
+  width:45px;
+  height:45px;
+}
+/* .cl-userButtonPopoverCard {
+  box-shadow: none;
+} */
 
 @layer utilities {
   .text-balance {

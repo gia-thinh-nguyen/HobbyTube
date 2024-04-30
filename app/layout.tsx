@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Sidebar from "@/components/Sidebar";
-import Profile from "@/components/Profile";
 import WholeContext from "./WholeContext";
 import { ClerkProvider } from '@clerk/nextjs'
 
@@ -26,7 +25,6 @@ export default function RootLayout({
       <WholeContext>
         <Navbar/>
         <Sidebar/>
-        <Profile/>
         {children}
       </WholeContext>
       </body>

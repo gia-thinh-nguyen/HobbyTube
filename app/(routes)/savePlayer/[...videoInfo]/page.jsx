@@ -1,12 +1,12 @@
 import React from 'react'
 import PlayVideo from '../../../../components/PlayVideo'
-import Recommended from './/../../../../components/Recommended/Recommended'
+import SaveRecom from './/../../../../components/Recommended/SaveRecom'
 import VideoDescriptionSmall from '../../../../components/VideoDescriptionSmall';
 import VideoDescriptionLarge from '../../../../components/VideoDescriptionLarge';
 
 
 const page= async ({params}) => {
-
+console.log(params.videoInfo)
     return (
       <div className='flex flex-col md:flex-row justify-between'>
           <div className='flex flex-col'>
@@ -17,7 +17,7 @@ const page= async ({params}) => {
             channelIdProp={params.videoInfo[2]}
             channelTitleProp={params.videoInfo[3]}
             thumbnailProp={decodeURIComponent(params.videoInfo.slice(4).join('/'))}
-            unsaveProp={false}
+            unsaveProp={true}
           />
           </div>
           <div className='overflow-y-auto h-full w-full '> 
@@ -27,9 +27,9 @@ const page= async ({params}) => {
             channelIdProp={params.videoInfo[2]}
             channelTitleProp={params.videoInfo[3]}
             thumbnailProp={decodeURIComponent(params.videoInfo.slice(4).join('/'))}
-            unsaveProp={false}
+            unsaveProp={true}
           />
-            <Recommended />
+          <SaveRecom playingId={params.videoInfo[0]}/>
           </div>
       </div>
     )

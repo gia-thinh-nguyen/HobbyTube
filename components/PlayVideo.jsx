@@ -24,4 +24,4 @@ const PlayVideo = ({videoIdProp}) => {
 
 export default PlayVideo
 
-///need to add a save,history(redux), firebase, customize
+

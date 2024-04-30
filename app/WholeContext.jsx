@@ -33,6 +33,7 @@ const WholeContext = (props) => {
   useEffect(() => {
     setVidFetch();
   }, [category])
+  
   const value={
     sidebar,
     setSidebar,

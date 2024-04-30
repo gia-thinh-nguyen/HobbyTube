@@ -1,18 +1,20 @@
 'use client'
 import React from 'react'
 import { useState,useEffect } from 'react'
+import { useContext } from 'react'
+import {Context} from '../app/WholeContext';
+import HygraphApi from '../app/hygraph/HygraphApi';
 
-const VideoDescription = ({videoIdProp,thumbnailProp,titleProp,channelIdProp,channelTitleProp}) => {
+const VideoDescription = ({videoIdProp,thumbnailProp,titleProp,channelIdProp,channelTitleProp,unsaveProp}) => {
     const [channelData,setChannelData]=useState(null);
     const [mounted, setMounted] = useState(false);
-    
   useEffect(() => {
     setMounted(true);
    }, [])
    
     const cleanedTitle=decodeURIComponent(titleProp);
     const cleanedChannelTitle=decodeURIComponent(channelTitleProp);
-
+    const {userEmail}=useContext(Context);
      const fetchKey = async () => {
         const res = await fetch("/key"); 
         const data = await res.json(); 
@@ -33,8 +35,8 @@ const VideoDescription = ({videoIdProp,thumbnailProp,titleProp,channelIdProp,cha
         fetchChannelData();
     },[])
     const videoData={videoid:videoIdProp,thumbnail:thumbnailProp,title:cleanedTitle,channelid:channelIdProp,channeltitle:cleanedChannelTitle}
-    const saveVideo=(vid)=>{
-        console.log(vid)
+    const saveVideo=()=>{
+        HygraphApi.uploadSaveList(userEmail,videoData)
     }
     return mounted?(
         <div className='md:hidden w-full md:w-[79vw] py-[3px] md:pt-[6px] md:px-5'>
@@ -44,8 +46,10 @@ const VideoDescription = ({videoIdProp,thumbnailProp,titleProp,channelIdProp,cha
                     <img src={channelData?channelData.snippet.thumbnails.default.url:''} alt='' width={50} height={50} className='rounded-full'></img>
                     <p>{channelTitleProp?cleanedChannelTitle:''}</p>
                 </div>
-                <button className='flex justify-center items-center bg-gradient-to-r from-[#db6060] to-[#b81c1c] text-white  w-[80px] h-[30px] rounded-lg cursor-pointer shadow-lg hover:shadow-gray-600' onClick={()=>saveVideo(videoData)}>SAVE</button>
+                {!unsaveProp?<button className='flex justify-center items-center bg-gradient-to-r from-[#db6060] to-[#b81c1c] text-white  w-[80px] h-[30px] rounded-lg cursor-pointer shadow-lg hover:shadow-gray-600' onClick={()=>saveVideo(videoData)}>SAVE</button>
+                :null}
             </div>
+
         </div>
       ):<div/>
 }

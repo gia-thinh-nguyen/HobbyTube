@@ -8,8 +8,8 @@ const fetchCooking=async()=>{
     }
 export async function GET(request) {
   try {
-    //await sql`CREATE TABLE IF NOT EXISTS cookingtable (videoid TEXT PRIMARY KEY,thumbnail TEXT,title TEXT,channelid TEXT,channelTitle TEXT);`
-    //const data= await fetchCooking();
+    // await sql`CREATE TABLE IF NOT EXISTS cookingtable (videoid TEXT PRIMARY KEY,thumbnail TEXT,title TEXT,channelid TEXT,channelTitle TEXT);`
+    // const data= await fetchCooking();
     // const items=data.items;
     // if (!data || data.length === 0) throw new Error('No videos found');
     

@@ -4,7 +4,9 @@ import { useState,useEffect } from 'react'
 import { useContext } from 'react'
 import {Context} from '../app/WholeContext';
 import HygraphApi from '../app/hygraph/HygraphApi';
-const VideoDescriptionLarge = ({videoIdProp,thumbnailProp,titleProp,channelIdProp,channelTitleProp}) => {
+
+
+const VideoDescriptionLarge = ({videoIdProp,thumbnailProp,titleProp,channelIdProp,channelTitleProp,unsaveProp}) => {
     const [channelData,setChannelData]=useState(null);
     const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -12,6 +14,7 @@ const VideoDescriptionLarge = ({videoIdProp,thumbnailProp,titleProp,channelIdPro
    }, []);
     const cleanedTitle=decodeURIComponent(titleProp);
     const cleanedChannelTitle=decodeURIComponent(channelTitleProp);
+    const [isSaved, setIsSaved] = useState(false);
     const {userEmail}=useContext(Context);
 
      const fetchKey = async () => {
@@ -35,8 +38,8 @@ const VideoDescriptionLarge = ({videoIdProp,thumbnailProp,titleProp,channelIdPro
     },[])
     const videoData={videoid:videoIdProp,thumbnail:thumbnailProp,title:cleanedTitle,channelid:channelIdProp,channeltitle:cleanedChannelTitle}
     const saveVideo=()=>{
-        HygraphApi.uploadSaveList(userEmail,videoData).then((res)=>console.log(res));
-        
+        HygraphApi.uploadSaveList(userEmail,videoData);
+        setIsSaved(true);
     }
     return mounted?(
         <div className='hidden md:flex w-full md:w-[78vw] py-[3px] md:pt-[6px] md:px-5'>
@@ -48,9 +51,11 @@ const VideoDescriptionLarge = ({videoIdProp,thumbnailProp,titleProp,channelIdPro
                     <h5 className='w-full tracking-wild'>{cleanedTitle?cleanedTitle:'Title here'}</h5>
                     <p className='hidden md:block '>{channelTitleProp?cleanedChannelTitle:''}</p>
                 </div>
-                <button className='flex justify-center items-center bg-gradient-to-r from-[#db6060] to-[#b81c1c] text-white  w-[80px] h-[30px] rounded-lg cursor-pointer shadow-lg hover:shadow-gray-600 scale-[120%] ' onClick={()=>saveVideo()}>SAVE</button>
+              {!isSaved?<button className='flex justify-center items-center bg-gradient-to-r from-[#db6060] to-[#b81c1c] text-white  w-[80px] h-[30px] rounded-lg cursor-pointer shadow-lg hover:shadow-gray-600 scale-[120%] ' onClick={()=>saveVideo()}>SAVE</button>
+              :<button className='flex justify-center items-center bg-gradient-to-r from-[#ccc9c9] to-[#a09c9c] text-white  w-[80px] h-[30px] rounded-lg cursor-pointer shadow-lg scale-[120%] ' >SAVED!</button>}
+               {/*<button className='flex justify-center items-center bg-gradient-to-r from-[#db6060] to-[#b81c1c] text-white  w-[80px] h-[30px] rounded-lg cursor-pointer shadow-lg hover:shadow-gray-600 scale-[120%] ' >UNSAVE</button> */}
             </div>
-            
+        
         </div>
       ):<div/>
 }

@@ -1,12 +1,12 @@
 import React from 'react'
 import PlayVideo from '../../../../components/PlayVideo'
-import Recommended from './/../../../../components/Recommended/Recommended'
+import HistoryRecom from './/../../../../components/Recommended/HistoryRecom'
 import VideoDescriptionSmall from '../../../../components/VideoDescriptionSmall';
 import VideoDescriptionLarge from '../../../../components/VideoDescriptionLarge';
 
 
 const page= async ({params}) => {
-
+  console.log(params.videoInfo)
     return (
       <div className='flex flex-col md:flex-row justify-between'>
           <div className='flex flex-col'>
@@ -29,7 +29,7 @@ const page= async ({params}) => {
             thumbnailProp={decodeURIComponent(params.videoInfo.slice(4).join('/'))}
             unsaveProp={false}
           />
-            <Recommended />
+         <HistoryRecom playingId={params.videoInfo[0]} />
           </div>
       </div>
     )
