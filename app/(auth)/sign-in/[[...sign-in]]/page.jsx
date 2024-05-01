@@ -24,7 +24,7 @@ export default function Page() {
         </h2>
 
         <p class="mt-4 leading-relaxed text-white/90">
-        Our platform is the ultimate destination for hobby enthusiasts! With a vast collection of videos featuring various hobbies, we guarantee to provide you with the best inspiration and entertainment. Don't miss out on the opportunity to enrich your life with new interests and skills. Join us now and embark on an exciting journey!
+        Our platform is the ultimate destination for hobby enthusiasts! With a vast collection of videos featuring various hobbies, we guarantee to provide you with the best inspiration and entertainment. Don&apos;t  miss out on the opportunity to enrich your life with new interests and skills. Join us now and embark on an exciting journey!
         
         </p>
         
