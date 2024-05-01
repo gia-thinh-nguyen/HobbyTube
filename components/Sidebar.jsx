@@ -1,7 +1,8 @@
 'use client'
-import React, { useContext } from 'react'
+import React, { useContext,useState } from 'react'
 import {Context} from '../app/WholeContext';
 import SidebarItems from './repeat-items/SidebarItems';
+import Modal from './Modal';
 import { usePathname } from 'next/navigation';
 import { GrClose } from "react-icons/gr";
 import Link from 'next/link';
@@ -9,6 +10,12 @@ import Image from 'next/image';
 
 const Sidebar = () => {
     const{sidebar,setSidebar}=useContext(Context);
+    const [showModal, setShowModal] = useState(false);
+    const [hobbies,setHobbies]=useState([]);
+    const allHobbies=["basketball","soccer","science","programming","music","cooking","drawing","chess"];
+    const handleHobbies=(data)=>{
+        setHobbies(data);
+    }
     const toggleSidebar=()=>{
         setSidebar(!sidebar);
     }
@@ -21,16 +28,10 @@ const Sidebar = () => {
                 <div className='flex flex-col h-full'>
                     <div className='fixed pt-[50px] ml-[220px]'><GrClose size={30} onClick={toggleSidebar}/></div>
                     <div className='flex flex-col grow scale-90 pt-[30px]'>
-                        <SidebarItems cat='basketball'/>
-                        <SidebarItems cat='soccer'/>
-                        
-                        <SidebarItems cat='science'/>
-                        <SidebarItems cat='programming'/>
-                        <SidebarItems cat='music'/>
-                        <SidebarItems cat='cooking'/>
+                        {hobbies.map((hobby,index)=><SidebarItems key={index} cat={hobby} />)}
                         <hr className='w-full h-[1px] bg-black'/>
                         <div className='flex pt-2'>
-                        <Image src='/assets/custom.png' alt='Custom Icon' width={60} height={60}/>
+                        <Image src='/assets/custom.png' alt='Custom Icon' width={60} height={60} onClick={() => setShowModal(true)}/>
                         <h6 className='pt-[20px] pl-4'>Customize</h6>
                         </div>
                     </div>
@@ -51,8 +52,9 @@ const Sidebar = () => {
                     </div>
                 </div>
             </div> 
-                
+            <Modal showModal={showModal} setShowModal={setShowModal} components={allHobbies} onSelectedComponents={handleHobbies}/>
         </div>
+        
       
              
  

@@ -82,6 +82,9 @@ const createUserEmail=async(userEmail)=>{
       createArchive(data: {userEmail: "`+userEmail+`"}) {
         userEmail
       }
+      publishArchive(where: {userEmail: "`+userEmail+`"}) {
+        userEmail
+      }
     }
     `
     const result=await graphQLClient.request(query);

@@ -17,7 +17,7 @@ console.log(params.videoInfo)
             channelIdProp={params.videoInfo[2]}
             channelTitleProp={params.videoInfo[3]}
             thumbnailProp={decodeURIComponent(params.videoInfo.slice(4).join('/'))}
-            unsaveProp={true}
+            saved={true}
           />
           </div>
           <div className='overflow-y-auto h-full w-full '> 
@@ -27,7 +27,7 @@ console.log(params.videoInfo)
             channelIdProp={params.videoInfo[2]}
             channelTitleProp={params.videoInfo[3]}
             thumbnailProp={decodeURIComponent(params.videoInfo.slice(4).join('/'))}
-            unsaveProp={true}
+            saved={true}
           />
           <SaveRecom playingId={params.videoInfo[0]}/>
           </div>

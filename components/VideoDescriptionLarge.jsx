@@ -6,7 +6,7 @@ import {Context} from '../app/WholeContext';
 import HygraphApi from '../app/hygraph/HygraphApi';
 
 
-const VideoDescriptionLarge = ({videoIdProp,thumbnailProp,titleProp,channelIdProp,channelTitleProp,unsaveProp}) => {
+const VideoDescriptionLarge = ({videoIdProp,thumbnailProp,titleProp,channelIdProp,channelTitleProp,saved}) => {
     const [channelData,setChannelData]=useState(null);
     const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -51,7 +51,7 @@ const VideoDescriptionLarge = ({videoIdProp,thumbnailProp,titleProp,channelIdPro
                     <h5 className='w-full tracking-wild'>{cleanedTitle?cleanedTitle:'Title here'}</h5>
                     <p className='hidden md:block '>{channelTitleProp?cleanedChannelTitle:''}</p>
                 </div>
-              {!isSaved?<button className='flex justify-center items-center bg-gradient-to-r from-[#db6060] to-[#b81c1c] text-white  w-[80px] h-[30px] rounded-lg cursor-pointer shadow-lg hover:shadow-gray-600 scale-[120%] ' onClick={()=>saveVideo()}>SAVE</button>
+              {!isSaved&&!saved?<button className='flex justify-center items-center bg-gradient-to-r from-[#db6060] to-[#b81c1c] text-white  w-[80px] h-[30px] rounded-lg cursor-pointer shadow-lg hover:shadow-gray-600 scale-[120%] ' onClick={()=>saveVideo()}>SAVE</button>
               :<button className='flex justify-center items-center bg-gradient-to-r from-[#ccc9c9] to-[#a09c9c] text-white  w-[80px] h-[30px] rounded-lg cursor-pointer shadow-lg scale-[120%] ' >SAVED!</button>}
                {/*<button className='flex justify-center items-center bg-gradient-to-r from-[#db6060] to-[#b81c1c] text-white  w-[80px] h-[30px] rounded-lg cursor-pointer shadow-lg hover:shadow-gray-600 scale-[120%] ' >UNSAVE</button> */}
             </div>

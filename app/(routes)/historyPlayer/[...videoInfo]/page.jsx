@@ -17,7 +17,7 @@ const page= async ({params}) => {
             channelIdProp={params.videoInfo[2]}
             channelTitleProp={params.videoInfo[3]}
             thumbnailProp={decodeURIComponent(params.videoInfo.slice(4).join('/'))}
-            unsaveProp={false}
+            saved={false}
           />
           </div>
           <div className='overflow-y-auto h-full w-full '> 
@@ -27,7 +27,7 @@ const page= async ({params}) => {
             channelIdProp={params.videoInfo[2]}
             channelTitleProp={params.videoInfo[3]}
             thumbnailProp={decodeURIComponent(params.videoInfo.slice(4).join('/'))}
-            unsaveProp={false}
+            saved={false}
           />
          <HistoryRecom playingId={params.videoInfo[0]} />
           </div>
